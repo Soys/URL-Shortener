@@ -1,7 +1,7 @@
 ---
 layout: redirect
-title: "自定義標題"
-description: "自定義描述"
+title: "演示文档"
+description: "这是一篇演示文档"
 image: "https://sitcon.org/branding/assets/logos/withname.png"
-redirect_to: "https://sitcon.org/"
+redirect_to: "https://www.google.com.hk/"
 ---
