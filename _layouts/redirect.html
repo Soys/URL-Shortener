@@ -13,17 +13,22 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      text-align: center;
     }
     .container {
-     background: #fff;
+      background: #fff;
       padding: 2rem 3rem;
       border-radius: 1rem;
       box-shadow: 0 6px 18px rgba(0,0,0,0.1);
       text-align: center;
       max-width: 480px;
       width: 90%;
-    }
+      transition: box-shadow 0.3s ease, transform 0.3s ease; /* 平滑过渡 */
+}
+
+    .container:hover {
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15); /* 浮动阴影 */
+      transform: translateY(-4px);               /* 微微上移 */
+}
     h1 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
