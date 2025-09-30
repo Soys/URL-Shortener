@@ -11,6 +11,10 @@
   <!-- End Google Tag Manager -->
 
   <title>{{ page.title }}</title>
+    {% if page.redirect_to and page.redirect_to != "" %}
+    <meta http-equiv="refresh" content="0; url={{ page.redirect_to }}">
+    <link rel="canonical" href="{{ page.redirect_to }}">
+    {% endif %}
   <meta name="description" content="{{ page.description }}">
   <meta name="author" content="SITCON">
   <meta property="og:title" content="{{ page.title }}">
@@ -36,6 +40,13 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <p>重新導向到 <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a>⋯⋯</p>
+    {% if page.redirect_to and page.redirect_to != "" %}
+    重新導向到 <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a>⋯⋯
+    <script>location="{{ page.redirect_to }}"</script>
+    {% else %}
+      <h1>沒有設定 redirect_to</h1>
+      <p>此短網址未設定跳轉目標。</p>
+      <p><a href="{{ site.baseurl }}/">回首頁</a></p>
+    {% endif %}
 </body>
 </html>
