@@ -1,6 +1,6 @@
 ---
 layout: redirect
-title: "SITCON URL Shortener"
-description: "SITCON 短網址服務，需要建立短網址請發 PR"
-redirect_to: "https://github.com/sitcon-tw/URL-Shortener"
+title: "短链接服务(by SITCON)"
+description: "源自SITCON的短链接转发工具"
+#redirect_to: "https://github.com/sitcon-tw/URL-Shortener"
 ---
