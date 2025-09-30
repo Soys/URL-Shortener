@@ -18,4 +18,4 @@ jobs:
           publish_dir: ./_site
           publish_branch: gh-pages
           force_orphan: true
-          cname: i.sitcon.org
+          cname: s.0w0.one
