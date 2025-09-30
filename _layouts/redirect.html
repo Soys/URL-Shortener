@@ -1,27 +1,87 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-  <head>
-    <meta charset="utf-8">
-    <title>{{ page.title }}</title>
+<head>
+  <meta charset="utf-8">
+  <title>{{ page.title }}</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 2rem 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+    p {
+      margin: 0.5rem 0 1rem;
+      color: #4b5563;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background: #1d4ed8;
+    }
+  </style>
+  {% if page.redirect_to and page.redirect_to != "" %}
+    <meta http-equiv="refresh" content="0; url={{ page.redirect_to }}">
+    <link rel="canonical" href="{{ page.redirect_to }}">
+  {% endif %}
+</head>
+<body>
+  <div class="container">
     {% if page.redirect_to and page.redirect_to != "" %}
-      <meta http-equiv="refresh" content="0; url={{ page.redirect_to }}">
-      <link rel="canonical" href="{{ page.redirect_to }}">
-    {% endif %}
-  </head>
-  <body>
-    {% if page.redirect_to and page.redirect_to != "" %}
-      <p>重新導向到 <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a> ⋯⋯</p>
+      <h1>正在跳轉中…</h1>
+      <p>即將前往：</p>
+      <p><a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
+      <a class="btn" href="{{ page.redirect_to }}">立即前往</a>
       <script>
         (function() {
           var target = "{{ page.redirect_to | strip | escape }}";
           if (target && target.length > 0) {
-            window.location.replace(target);
+            setTimeout(function() {
+              window.location.replace(target);
+            }, 1200); // 延遲 1.2 秒再跳轉
           }
         })();
       </script>
     {% else %}
-      <h1>{{ page.title }}</h1>
-      <p>{{ page.description }}</p>
+      <h1>沒有設定 redirect_to</h1>
+      <p>此短網址未設定跳轉目標。</p>
+      <a class="btn" href="{{ site.baseurl }}/">回首頁</a>
     {% endif %}
-  </body>
+  </div>
+</body>
 </html>
