@@ -65,7 +65,7 @@
 <body>
   <div class="container">
     {% if page.redirect_to and page.redirect_to != "" %}
-      <h1>正在跳轉中…</h1>
+      <h1>正在跳轉中…</h1><hr />
       <p>即將前往：</p>
       <p><a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
       <a class="btn" href="{{ page.redirect_to }}">立即前往</a>
