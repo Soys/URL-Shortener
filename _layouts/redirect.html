@@ -1,52 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
-<head>
-  <meta charset="utf-8">
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-KB9RZD8J');</script>
-  <!-- End Google Tag Manager -->
-
-  <title>{{ page.title }}</title>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
     {% if page.redirect_to and page.redirect_to != "" %}
-    <meta http-equiv="refresh" content="0; url={{ page.redirect_to }}">
-    <link rel="canonical" href="{{ page.redirect_to }}">
+      <meta http-equiv="refresh" content="0; url={{ page.redirect_to }}">
+      <link rel="canonical" href="{{ page.redirect_to }}">
     {% endif %}
-  <meta name="description" content="{{ page.description }}">
-  <meta name="author" content="SITCON">
-  <meta property="og:title" content="{{ page.title }}">
-  <meta property="og:description" content="{{ page.description }}">
-  {% if page.image %}
-    {% if page.image contains "://" %}
-      <meta property="og:image" content="{{ page.image }}">
-    {% else %}
-      <meta property="og:image" content="{{ site.url }}{{ page.image | relative_url }}">
-    {% endif %}
-  {% endif %}
-  <meta property="og:site_name" content="SITCON">
-  <meta property="og:locale" content="zh_TW">
-  <script>
-    setTimeout(function() {
-      window.location.href = "{{ page.redirect_to }}";
-    }, 500);
-  </script>
-</head>
-<body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KB9RZD8J"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
+  </head>
+  <body>
     {% if page.redirect_to and page.redirect_to != "" %}
-    重新導向到 <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a>⋯⋯
-    <script>location="{{ page.redirect_to }}"</script>
+      <p>重新導向到 <a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a> ⋯⋯</p>
+      <script>
+        (function() {
+          var target = "{{ page.redirect_to | strip | escape }}";
+          if (target && target.length > 0) {
+            window.location.replace(target);
+          }
+        })();
+      </script>
     {% else %}
       <h1>沒有設定 redirect_to</h1>
-      <p>此短網址未設定跳轉目標。</p>
+      <p>此短網址未設定跳轉目標，請檢查設定。</p>
       <p><a href="{{ site.baseurl }}/">回首頁</a></p>
     {% endif %}
-</body>
+  </body>
 </html>
