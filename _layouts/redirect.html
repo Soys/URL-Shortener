@@ -20,9 +20,8 @@
         })();
       </script>
     {% else %}
-      <h1>沒有設定 redirect_to</h1>
-      <p>此短網址未設定跳轉目標，請檢查設定。</p>
-      <p><a href="{{ site.baseurl }}/">回首頁</a></p>
+      <h1>{{ page.title }}</h1>
+      <p>{{ page.description }}</p>
     {% endif %}
   </body>
 </html>
