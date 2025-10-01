@@ -32,7 +32,7 @@
    - `title`、`description`和`pic`用于Open Graph 标签，但部分情况下能用于显示标题与内容。（例如404页面和首页）
    - 如不需要请注释掉对应行，目前`pic`和`background`以及`redirect_time`不影响运行。(大概)【其中如`redirect_time`未填则默认为3】
   
-一键复制：
+   一键复制：
 
    ```yaml
    ---
