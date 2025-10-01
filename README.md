@@ -1,4 +1,4 @@
-# 基于`SITCON 短網址服務`改进的短链接服务
+# 基于`[SITCON 短網址服務](https://github.com/sitcon-tw/URL-Shortener)`改进的短链接服务
 
 使用 GitHub Pages 创建一个简易的短链接服务，能够自定义标题、摘要、倒计时时间设置、背景自定义和 Open Graph 标签。
 
