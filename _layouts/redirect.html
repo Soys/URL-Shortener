@@ -124,11 +124,36 @@ document.addEventListener("DOMContentLoaded", function() {
   var target = "{{ page.redirect_to | strip | escape }}";
   var delay = {{ page.redirect_time | default: 0 }} * 1000;
   console.log("Redirect delay (ms):", delay);
-  if(target && target.length > 0){
-    setTimeout(function(){
-      window.location.replace(target);
-    }, delay);
+  // 获取当前路径
+  var currentPath = window.location.pathname;
+  if (!currentPath.endsWith("/")) {
+    currentPath = currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
   }
+  var indexUrl = currentPath + "index.html"; <!-- 修改：要检测的 index.html -->
+
+  // 检查 index.html 是否存在
+  fetch(indexUrl, { method: "HEAD" })
+    .then(function(response) {
+      if (response.ok) {
+        console.log("index.md exists, redirecting to:", indexUrl);
+        window.location.replace(indexUrl); <!-- 修改：优先跳转到 index -->
+      } else {
+        console.log("No index.md, fallback redirect");
+        if (target && target.length > 0) {
+          setTimeout(function() {
+            window.location.replace(target);
+          }, delay);
+        }
+      }
+    })
+    .catch(function(error) {
+      console.log("Error checking index.md:", error);
+      if (target && target.length > 0) {
+        setTimeout(function() {
+          window.location.replace(target);
+        }, delay);
+      }
+    });
 });
 </script>
 <link rel="canonical" href="{{ page.redirect_to }}">
