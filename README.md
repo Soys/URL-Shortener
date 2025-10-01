@@ -30,7 +30,7 @@
    - 如果图片存放在当前repo的 `images` 文件夹中，请使用绝对路径（例如：`/images/your-image.jpg`）。
    - 如果要使用外部图片，请使用完整的 URL。
    - `title`、`description`和`pic`用于Open Graph 标签，但部分情况下能用于显示标题与内容。（例如404页面和首页）
-   - 如不需要请注释掉对应行，目前`pic`和`background`以及`redirect_time`不影响运行。(大概)【其中如`redirect_time`未填则默认为0】
+   - 如不需要请注释掉对应行，目前`pic`和`background`以及`redirect_time`不影响运行。(大概)【其中如`redirect_time`未填则默认为3】
   
 一键复制：
 
@@ -79,7 +79,7 @@
 
 ### 自动部署
 
-每当有新的变更推送到主分支，GitHub Actions 会自动触发部署流程，将 Markdown 文件转换为 HTML，並部署到 GitHub Pages。
+每当有新的变更推送到主分支，GitHub Actions 会自动触发部署流程，将 Markdown 文件转换为 HTML，并部署到 GitHub Pages。
 
 ## 维护注意事项
 
