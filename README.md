@@ -75,7 +75,7 @@
 
 ### 跳转机制
 
-跳转使用 JavaScript 延迟执行。这个延迟设定~~在 HTML 模板~~在 Markdown 文件中，可以根据需求调整。
+跳转使用 JavaScript 延迟执行。这个延迟设定~~在 HTML 模板~~在 Markdown 文件中，可以根据需求调整。如未填写`redirect_time`参数，则默认为0。
 
 ### 自动部署
 
