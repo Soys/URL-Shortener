@@ -1,94 +1,99 @@
-# SITCON 短網址服務
+# 基于`SITCON 短網址服務`改进的短链接服务
 
-這個專案使用 GitHub Pages 建立一個簡單的短網址服務，開放自訂標題、摘要和 Open Graph 標籤。
+使用 GitHub Pages 创建一个简易的短链接服务，能够自定义标题、摘要、倒计时时间设置、背景自定义和 Open Graph 标签。
 
-## 如何建立新的短網址
+## 如何使用
 
-1. 在 `_redirects` 資料夾中建立一個新的 Markdown 檔案。檔名將成為短網址的一部分（slug）。
-   例如：`template.md` 將產生 `https://i.sitcon.org/template`
+1. 在 `_redirects` 文件夹中创建一个新的 Markdown 文件。文件名将成为短链接的一部分（slug）。
+   例如：`template.md` 将生成 `https://i.sitcon.org/template`
 
-2. 在 Markdown 檔案中使用以下格式：
+2. 在 Markdown 文件中使用以下格式：
 
    ```yaml
    ---
    layout: redirect
-   title: "您的自定義標題"
-   description: "您的自定義描述"
-   image: "/images/your-image.jpg"  # 使用相對路徑引用 repo 中的圖片
+   title: "演示文档"
+   description: "这是一篇演示文档"
+   pic: "/images/your-image.jpg"
    # 或
-   image: "https://example.com/your-image.jpg"  # 使用完整的 URL
-   redirect_to: "https://example.com/your-long-url"
+   pic: "https://example.com/images/withname.png"
+   background: "/images/0.png" #视频或图片
+   #或
+   background: "https://example.com/images/0.png"
+   redirect_to: "https://x.com/"
+   redirect_time: 3
    ---
+
    ```
 
    注意：
-   - 如果圖片存放在本專案的 `images` 資料夾中，請使用相對路徑（例如：`/images/your-image.jpg`）。
-   - 如果要使用外部圖片，請提供完整的 URL。
+   - 如果图片存放在当前repo的 `images` 文件夹中，请使用绝对路径（例如：`/images/your-image.jpg`）。
+   - 如果要使用外部图片，请使用完整的 URL。
 
-3. 如果你想使用自訂圖片，請將圖片檔案上傳到 `images` 資料夾。
+3. 如果你想使用自定义图片，请将图片上传到 `images` 文件夹。
 
-4. 將變更提交並推送到 GitHub 儲存庫。
+4. 提交变更并推送到 GitHub 存储库。
 
-5. GitHub Actions 將自動建置並部署您的新短網址。
+5. GitHub Actions 会自动创建并部署你新的短链接。
 
-## 技術原理
+## 技术原理
 
-本專案使用以下技術和工具：
+本repo使用以下技术和工具：
 
-1. **GitHub Pages**：用於託管靜態網站。
-2. **Jekyll**：靜態網站產生器，用於將 Markdown 檔案轉換為 HTML。
-3. **自訂 HTML 模板**：位於 `_layouts/redirect.html`，用於產生轉址頁面。
-4. **GitHub Actions**：自動化建置和部署流程。
-5. **Google Tag Manager**：用於追蹤轉換效果。
+1. **GitHub Pages**：用于托管静态网站。
+2. **Jekyll**：静态网站生成器，用于将 Markdown 文件转换为 HTML。
+3. **自定义 HTML 模板**：位于 `_layouts/redirect.html`，用于生成跳转页面。
+4. **GitHub Actions**：自动创建和部署流程。
 
-### 檔案結構
+### 文件结构
 
 ```
 /
-├── _redirects/     # 存放 Markdown 檔案的資料夾
+├── _redirects/     # 存放 Markdown 文件的文件夹
 ├── _layouts/       # 存放 HTML 模板
-├── images/         # 存放圖片檔案
-├── _config.yml     # Jekyll 設定檔
-└── .github/workflows/  # GitHub Actions 設定
+├── images/         # 存放图片文件
+├── _config.yml     # Jekyll 设定文件
+└── .github/workflows/  # GitHub Actions 设置
 ```
 
-### 轉址機制
+### 跳转机制
 
-轉址使用 JavaScript 延遲執行，以確保 Google Tag Manager 有足夠時間載入和執行。這個延遲設定在 HTML 模板中，可以根據需要調整。
+跳转使用 JavaScript 延迟执行。这个延迟设定--在 HTML 模板--在 Markdown 文件中，可以根据需求调整。
 
-### 自動化部署
+### 自动部署
 
-每當有新的變更推送到主分支時，GitHub Actions 會自動觸發建置流程，將 Markdown 檔案轉換為 HTML，並部署到 GitHub Pages。
+每当有新的变更推送到主分支，GitHub Actions 会自动触发部署流程，将 Markdown 文件转换为 HTML，並部署到 GitHub Pages。
 
-## 維護注意事項
+## 维护注意事项
 
-1. 確保 `_config.yml` 中的設定正確，特別是 `collections` 和 `url` 部分。
+1. 确保 `_config.yml` 中的设定无误，特別是 `collections` 和 `url` 部分。
 
-2. 如需修改轉址邏輯或 Google Tag Manager 設定，請編輯 `_layouts/redirect.html` 檔案。
+2. 如需修改跳转逻辑--或 Google Tag Manager 設定--，请编辑 `_layouts/redirect.html` 文件。
 
-3. GitHub Actions 設定檔位於 `.github/workflows/build.yml`，如需調整自動化流程，請修改此檔案。
+3. GitHub Actions 设定文件位于 `.github/workflows/build.yml`，如需调整自动化流程，请修改此文件。
 
-4. 若要更新 Google Tag Manager 程式碼，請在 HTML 模板中找到相應的程式碼區塊進行修改。
+4. --若要更新 Google Tag Manager 代码，请在 HTML 模板中找到对应的代码块进行修改。--
 
-5. 圖片檔案應放在 `images/` 資料夾中。請確保使用適當大小和格式的圖片，以增進網站效能。
+5. 图片文件应放在 `images/` 文件夹中。请确保使用适当大小和格式的图片，以增强网站效能網站效能。
 
-6. 在引用圖片時，請使用相對路徑（例如：`/images/your-image.jpg`）或完整的 URL。
+6. 在引用图片时，请使用绝对路径（例如：`/images/your-image.jpg`）或完整的 URL。
 
-7. 圖片路徑支援兩種格式：
-   - 相對路徑：用於引用儲存在 `images/` 資料夾中的圖片（例如：`/images/your-image.jpg`）。
-   - 完整 URL：用於引用外部圖片（例如：`https://example.com/your-image.jpg`）。
-   請確保在 Markdown 檔案中正確指定圖片路徑。
+7. 图片路径支持两种格式：
+   - 绝对路径：用于引用存放在 `images/` 文件夹中的图片（例如：`/images/your-image.jpg`）。
+   - 完整 URL：用于引用外部图片（例如：`https://example.com/your-image.jpg`）。
+   请确保在 Markdown 文件中指定正确的图片路径。
 
-8. 定期檢查外部圖片連結是否有效，以確保所有短網址頁面都能正確顯示預期的圖片。
+8. 定期检查外部图片链接是否有效，确保所有短链接页面都能正确显示预期的图片。
 
 ## 效能考量
 
-1. **頁面載入時間**：由於使用 JavaScript 進行轉址，頁面可能會有短暫的顯示時間。目前設定為 500 毫秒的延遲，可以在 `_layouts/redirect.html` 中調整這個值。
+1. **页面载入时间**：由于使用 JavaScript 进行跳转，页面内可能会有短暂的显示时间，可以在对应的 Markdown 文件中调整这个值。
 
-2. **SEO 影響**：雖然使用 JavaScript 轉址可能會稍微影響搜尋引擎最佳化，但已經加入了適當的 meta 標籤來避免這個問題。
+2. --**SEO 影响**：虽然使用 JavaScript 跳转可能会稍微影响搜索引擎最优化，但已经加入了适当的 meta 标签来避免这个问题。--
 
-## 相關資源
+## 相关资源
 
+- [URL-Shortener](https://github.com/sitcon-tw/URL-Shortener) **特别感谢**
 - [GitHub Pages](https://docs.github.com/en/pages)
 - [Jekyll](https://jekyllrb.com/docs/)
 - [Markdown 指南](https://www.markdownguide.org/)
