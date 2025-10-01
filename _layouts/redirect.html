@@ -100,15 +100,15 @@
     }
   </style>
 <script>
-  (function(){
-    var target = "{{ page.redirect_to | strip | escape }}";
-    var delay = {{ page.redirect_time | default: 0 }} * 1000; // 转毫秒
-    if (target && target.length > 0) {
-      setTimeout(function(){
-        window.location.replace(target);
-      }, delay);
-    }
-  })();
+(function(){
+  var target = "{{ page.redirect_to | strip | escape }}";
+  var delay = {{ page.redirect_time | default:0 }} * 1000; // 单位毫秒
+  if(target && target.length > 0){
+    setTimeout(function(){
+      window.location.replace(target);
+    }, delay);
+  }
+})();
 </script>
 <link rel="canonical" href="{{ page.redirect_to }}">
 </head>
