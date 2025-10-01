@@ -75,7 +75,7 @@
 
 ### 跳转机制
 
-跳转使用 JavaScript 延迟执行。这个延迟设定--在 HTML 模板--在 Markdown 文件中，可以根据需求调整。
+跳转使用 JavaScript 延迟执行。这个延迟设定~~在 HTML 模板~~在 Markdown 文件中，可以根据需求调整。
 
 ### 自动部署
 
@@ -85,11 +85,11 @@
 
 1. 确保 `_config.yml` 中的设定无误，特別是 `collections` 和 `url` 部分。
 
-2. 如需修改跳转逻辑--或 Google Tag Manager 設定--，请编辑 `_layouts/redirect.html` 文件。
+2. 如需修改跳转逻辑~~或 Google Tag Manager 設定~~，请编辑 `_layouts/redirect.html` 文件。
 
 3. GitHub Actions 设定文件位于 `.github/workflows/build.yml`，如需调整自动化流程，请修改此文件。
 
-4. --若要更新 Google Tag Manager 代码，请在 HTML 模板中找到对应的代码块进行修改。--
+4. ~~若要更新 Google Tag Manager 代码，请在 HTML 模板中找到对应的代码块进行修改。~~
 
 5. 图片文件应放在 `images/` 文件夹中。请确保使用适当大小和格式的图片，以增强网站效能網站效能。
 
@@ -106,7 +106,7 @@
 
 1. **页面载入时间**：由于使用 JavaScript 进行跳转，页面内可能会有短暂的显示时间，可以在对应的 Markdown 文件中调整这个值。
 
-2. --**SEO 影响**：虽然使用 JavaScript 跳转可能会稍微影响搜索引擎最优化，但已经加入了适当的 meta 标签来避免这个问题。--
+2. ~~**SEO 影响**：虽然使用 JavaScript 跳转可能会稍微影响搜索引擎最优化，但已经加入了适当的 meta 标签来避免这个问题。~~
 
 ## 相关资源
 
