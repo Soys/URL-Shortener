@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function() {
       <h1><span class="countdown-circle" id="countdown"></span>  正在跳转…</h1><hr />
       <p>即将前往：</p>
       <p><a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
+      <p>如网站无法打开，请检查本地网络或者所在地区是否屏蔽了该网站。</p>
       <a class="btn" href="{{ page.redirect_to }}">立即前往</a>
     {% else %}
       <h1>{{ page.title }}</h1><hr />
