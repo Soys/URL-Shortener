@@ -4,8 +4,8 @@
 
 ## 如何使用
 
-1. 在 `_redirects` 文件夹中创建一个新的 Markdown 文件。文件名将成为短链接的一部分（slug）。
-   例如：`template.md` 将生成 `https://i.sitcon.org/template`
+1. 在 `_redirects` 文件夹中创建一个新的 Markdown 文件。文件名将成为短链接的一部分（slug），在该文件夹下新增的文件夹也应算在内。
+   例如：`template.md` 将生成 `https://example.com/template`，`/template/template.md` 将生成 `https://example.com/template/template`
 
 2. 在 Markdown 文件中使用以下格式：
 
