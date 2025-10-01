@@ -29,6 +29,23 @@
    注意：
    - 如果图片存放在当前repo的 `images` 文件夹中，请使用绝对路径（例如：`/images/your-image.jpg`）。
    - 如果要使用外部图片，请使用完整的 URL。
+   - `title`、`description`和`pic`用于Open Graph 标签，但部分情况下能用于显示标题与内容。（例如404页面和首页）
+   - 如不需要请注释掉对应行，目前`pic`和`background`以及`redirect_time`不影响运行。(大概)【其中如`redirect_time`未填则默认为0】
+  
+一键复制：
+
+   ```yaml
+   ---
+   layout: redirect
+   title: "标题"
+   description: "摘要"
+   pic: "https://example.com/images/withname.png"
+   background: "/images/0.png" #视频或图片
+   redirect_to: "https://example.com/"
+   redirect_time: 3
+   ---
+
+   ```
 
 3. 如果你想使用自定义图片，请将图片上传到 `images` 文件夹。
 
