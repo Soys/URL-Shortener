@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function() {
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       var target = "{{ page.redirect_to | strip | escape }}";
-      var delay = {{ page.redirect_time | default: 5 }}; // 秒数
+      var delay = {{ page.redirect_time | default: 3 }}; // 秒数
       var countdownElem = document.getElementById("countdown");
       var remaining = delay;
 
