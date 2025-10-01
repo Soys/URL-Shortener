@@ -145,10 +145,9 @@ document.addEventListener("DOMContentLoaded", function() {
   {% endif %}
   <div class="container">
     {% if page.redirect_to and page.redirect_to != "" %}
-      <div class="countdown-circle" id="countdown">
+      <h1><div class="countdown-circle" id="countdown">
       <span id="countdown-number">{{ page.redirect_time | default: 0 }}</span>
-      </div>
-      <h1>正在跳轉中…</h1><hr />
+      </div>正在跳轉中…</h1><hr />
       <p>即將前往：</p>
       <p><a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
       <a class="btn" href="{{ page.redirect_to }}">立即前往</a>
