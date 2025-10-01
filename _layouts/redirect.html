@@ -99,11 +99,18 @@
       opacity: 0.7; /* 半透明 */
     }
   </style>
-  {% if page.redirect_to and page.redirect_to != "" %}
-  {% assign delay = page.redirect_time | default: 0 %} <!-- 新增: 获取延迟时间 -->
-  <meta http-equiv="refresh" content="{{ delay }}; url={{ page.redirect_to }}">
-  <link rel="canonical" href="{{ page.redirect_to }}">
-  {% endif %}
+<script>
+  (function(){
+    var target = "{{ page.redirect_to | strip | escape }}";
+    var delay = {{ page.redirect_time | default: 0 }} * 1000; // 转毫秒
+    if (target && target.length > 0) {
+      setTimeout(function(){
+        window.location.replace(target);
+      }, delay);
+    }
+  })();
+</script>
+<link rel="canonical" href="{{ page.redirect_to }}">
 </head>
 <body>
   <!-- 背景区域 -->
