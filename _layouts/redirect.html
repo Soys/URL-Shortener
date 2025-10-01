@@ -6,11 +6,11 @@
   <meta name="author" content="Soys(原作者：SITCON)">
   <meta property="og:title" content="{{ page.title }}">
   <meta property="og:description" content="{{ page.description }}">
-  {% if page.image %}
-  {% if page.image contains "://" %}
-  <meta property="og:image" content="{{ page.sharepic }}">
+  {% if page.pic %}
+  {% if page.pic contains "://" %}
+  <meta property="og:image" content="{{ page.pic }}">
   {% else %}
-  <meta property="og:image" content="{{ site.url }}{{ page.sharepic | relative_url }}">
+  <meta property="og:image" content="{{ site.url }}{{ page.pic | relative_url }}">
   {% endif %}
   {% endif %}
   <meta property="og:site_name" content="0w0">
