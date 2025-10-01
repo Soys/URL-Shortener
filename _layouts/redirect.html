@@ -106,7 +106,7 @@
 </head>
 <body>
   <!-- 背景区域 -->
-  {% if page.background %}
+  {% if page.background and page.background != "" %}
     <div class="background">
       {% assign ext = page.background | split:'.' | last | downcase %}
       {% if ext == "mp4" or ext == "webm" or ext == "ogg" %}
