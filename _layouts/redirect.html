@@ -115,7 +115,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   var target = "{{ page.redirect_to | strip | escape }}";
-  var delay = {{ page.redirect_time | default: 3 }} * 1000;
+  var delay = {{ page.redirect_time | default: 0 }} * 1000;
   console.log("Redirect delay (ms):", delay);
   if(target && target.length > 0){
     setTimeout(function(){
