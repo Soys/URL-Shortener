@@ -142,12 +142,21 @@ document.addEventListener("DOMContentLoaded", function() {
   {% endif %}
   <div class="container">
     {% if page.redirect_to and page.redirect_to != "" %}
-      <span class="countdown-circle" id="countdown">{{ page.redirect_time | default: 3 }}</span>
-      <h1>正在跳轉中…</h1><hr />
+      <h1><span class="countdown-circle" id="countdown">{{ page.redirect_time | default: 3 }}</span>  正在跳轉中…</h1><hr />
       <p>即將前往：</p>
       <p><a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
       <a class="btn" href="{{ page.redirect_to }}">立即前往</a>
-      <script>
+    {% else %}
+      <h1>{{ page.title }}</h1><hr />
+      <p>{{ page.description }}</p>
+      {% unless page.path == "index.md" or page.url == "/" %}
+        <a class="btn" href="{{ site.baseurl }}/">回首頁</a>
+      {% endunless %}
+    {% endif %}
+    <hr />
+    <p>鸣谢：<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a></p>
+  </div>
+        <script>
 document.addEventListener("DOMContentLoaded", function() {
   var target = "{{ page.redirect_to | strip | escape }}";
   var delay = {{ page.redirect_time | default: 5 }}; // 秒数
@@ -174,15 +183,5 @@ document.addEventListener("DOMContentLoaded", function() {
   }, delay * 1000);
 });
 </script>
-    {% else %}
-      <h1>{{ page.title }}</h1><hr />
-      <p>{{ page.description }}</p>
-      {% unless page.path == "index.md" or page.url == "/" %}
-        <a class="btn" href="{{ site.baseurl }}/">回首頁</a>
-      {% endunless %}
-    {% endif %}
-    <hr />
-    <p>鸣谢：<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a></p>
-  </div>
 </body>
 </html>
