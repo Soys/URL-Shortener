@@ -122,46 +122,16 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   var target = "{{ page.redirect_to | strip | escape }}";
-  var delay = parseInt("{{ page.redirect_time | default: 0 }}", 10) * 1000;
-
-  var currentPath = window.location.pathname;
-  var currentFile = currentPath.substring(currentPath.lastIndexOf("/") + 1);
-
-  // 如果当前就是 index.html，停止跳转
-  if (currentFile.toLowerCase() === "index.html") {
-    console.log("Already on index.html, skip redirect");
-    return;
+  var delay = {{ page.redirect_time | default: 0 }} * 1000;
+  console.log("Redirect delay (ms):", delay);
+  if(target && target.length > 0){
+    setTimeout(function(){
+      window.location.replace(target);
+    }, delay);
   }
-
-  // 拼接当前目录下的 index.html
-  var dirPath = currentPath.endsWith("/") ? currentPath : currentPath.substring(0, currentPath.lastIndexOf("/") + 1);
-  var indexUrl = dirPath + "index.html";
-
-  // 检查 index.html 是否存在
-  fetch(indexUrl, { method: "HEAD" })
-    .then(function(response) {
-      if (response.ok) {
-        console.log("index.md exists, redirecting to:", indexUrl);
-        window.location.replace(indexUrl); // 优先跳转到 index.html
-      } else {
-        console.log("No index.md, fallback redirect");
-        if (target && target.length > 0) {
-          setTimeout(function() {
-            window.location.replace(target);
-          }, delay);
-        }
-      }
-    })
-    .catch(function(error) {
-      console.log("Error checking index.md:", error);
-      if (target && target.length > 0) {
-        setTimeout(function() {
-          window.location.replace(target);
-        }, delay);
-      }
-    });
 });
 </script>
+
 
 <link rel="canonical" href="{{ page.redirect_to }}">
 </head>
