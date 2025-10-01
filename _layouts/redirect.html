@@ -98,6 +98,22 @@
       object-fit: cover;
       opacity: 0.7; /* 半透明 */
     }
+    .countdown-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(0, 123, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #007bff;
+      font-size: 1.2rem;
+      position: absolute;
+      left: -80px; /* 根据需要调整位置 */
+      top: 50%;
+      transform: translateY(-50%);
+}
   </style>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -129,10 +145,40 @@ document.addEventListener("DOMContentLoaded", function() {
   {% endif %}
   <div class="container">
     {% if page.redirect_to and page.redirect_to != "" %}
+      <div class="countdown-circle" id="countdown">
+      <span id="countdown-number">{{ page.redirect_time | default: 0 }}</span>
+      </div>
       <h1>正在跳轉中…</h1><hr />
       <p>即將前往：</p>
       <p><a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
       <a class="btn" href="{{ page.redirect_to }}">立即前往</a>
+      <script>
+document.addEventListener("DOMContentLoaded", function() {
+  var target = "{{ page.redirect_to | strip | escape }}";
+  var delay = {{ page.redirect_time | default: 5 }}; // 秒数
+  var countdownElem = document.getElementById("countdown-number");
+  var remaining = delay;
+
+  // 初始化倒计时
+  countdownElem.textContent = remaining;
+
+  // 每秒更新一次
+  var interval = setInterval(function() {
+    remaining--;
+    if(remaining <= 0){
+      clearInterval(interval);
+    }
+    countdownElem.textContent = remaining;
+  }, 1000);
+
+  // 延迟跳转
+  setTimeout(function() {
+    if(target && target.length > 0){
+      window.location.replace(target);
+    }
+  }, delay * 1000);
+});
+</script>
     {% else %}
       <h1>{{ page.title }}</h1><hr />
       <p>{{ page.description }}</p>
