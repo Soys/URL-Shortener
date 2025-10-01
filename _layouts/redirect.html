@@ -100,8 +100,9 @@
     }
   </style>
   {% if page.redirect_to and page.redirect_to != "" %}
-    <meta http-equiv="refresh" content="5; url={{ page.redirect_to }}">
-    <link rel="canonical" href="{{ page.redirect_to }}">
+  {% assign delay = page.redirect_time | default: 0 %} <!-- 新增: 获取延迟时间 -->
+  <meta http-equiv="refresh" content="{{ delay }}; url={{ page.redirect_to }}">
+  <link rel="canonical" href="{{ page.redirect_to }}">
   {% endif %}
 </head>
 <body>
