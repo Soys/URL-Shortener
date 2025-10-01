@@ -102,15 +102,15 @@
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      width: 2rem;        /* 圆形直径 */
-      height: 2rem;
+      width: 2.5rem;
+      height: 2.5rem;
       border-radius: 50%;
       background-color: rgba(0,123,255,0.2);
       color: #007bff;
       font-weight: bold;
-      font-size: 1rem;
-      margin-left: 0.5rem; /* h1 文本右侧间距 */
-}
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
   </style>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function() {
   {% endif %}
   <div class="container">
     {% if page.redirect_to and page.redirect_to != "" %}
-      <h1><span class="countdown-circle" id="countdown">{{ page.redirect_time }}</span>  正在跳轉中…</h1><hr />
+      <h1><span class="countdown-circle" id="countdown"></span>  正在跳轉中…</h1><hr />
       <p>即將前往：</p>
       <p><a href="{{ page.redirect_to }}">{{ page.redirect_to }}</a></p>
       <a class="btn" href="{{ page.redirect_to }}">立即前往</a>
@@ -156,32 +156,29 @@ document.addEventListener("DOMContentLoaded", function() {
     <hr />
     <p>鸣谢：<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a></p>
   </div>
-        <script>
-document.addEventListener("DOMContentLoaded", function() {
-  var target = "{{ page.redirect_to | strip | escape }}";
-  var delay = {{ page.redirect_time | default: 5 }}; // 秒数
-  var countdownElem = document.getElementById("countdown-number");
-  var remaining = delay;
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var target = "{{ page.redirect_to | strip | escape }}";
+      var delay = {{ page.redirect_time | default: 5 }}; // 秒数
+      var countdownElem = document.getElementById("countdown");
+      var remaining = delay;
 
-  // 初始化倒计时
-  countdownElem.textContent = remaining;
+      countdownElem.textContent = remaining;
 
-  // 每秒更新一次
-  var interval = setInterval(function() {
-    remaining--;
-    if(remaining <= 0){
-      clearInterval(interval);
-    }
-    countdownElem.textContent = remaining;
-  }, 1000);
+      var interval = setInterval(function() {
+        remaining--;
+        countdownElem.textContent = remaining;
+        if (remaining <= 0) {
+          clearInterval(interval);
+        }
+      }, 1000);
 
-  // 延迟跳转
-  setTimeout(function() {
-    if(target && target.length > 0){
-      window.location.replace(target);
-    }
-  }, delay * 1000);
-});
-</script>
+      setTimeout(function() {
+        if (target && target.length > 0) {
+          window.location.replace(target);
+        }
+      }, delay * 1000);
+    });
+  </script>
 </body>
 </html>
