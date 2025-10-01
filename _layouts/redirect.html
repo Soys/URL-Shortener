@@ -98,15 +98,6 @@
       object-fit: cover;
       opacity: 0.7; /* 半透明 */
     }
-    .background::after { 
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 40%; /* 渐变高度 */
-      background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0)); 
-    }
   </style>
   {% if page.redirect_to and page.redirect_to != "" %}
     <meta http-equiv="refresh" content="5; url={{ page.redirect_to }}">
