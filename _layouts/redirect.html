@@ -100,15 +100,16 @@
     }
   </style>
 <script>
-(function(){
+document.addEventListener("DOMContentLoaded", function() {
   var target = "{{ page.redirect_to | strip | escape }}";
-  var delay = {{ page.redirect_time | default:0 }} * 1000; // 单位毫秒
+  var delay = {{ page.redirect_time | default: 0 }} * 1000;
+  console.log("Redirect delay (ms):", delay);
   if(target && target.length > 0){
     setTimeout(function(){
       window.location.replace(target);
     }, delay);
   }
-})();
+});
 </script>
 <link rel="canonical" href="{{ page.redirect_to }}">
 </head>
