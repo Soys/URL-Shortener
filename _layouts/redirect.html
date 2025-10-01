@@ -8,13 +8,12 @@
   <meta property="og:description" content="{{ page.description }}">
   {% if page.image %}
   {% if page.image contains "://" %}
-  <meta property="og:image" content="{{ page.image }}">
+  <meta property="og:image" content="{{ page.sharepic }}">
   {% else %}
-  <meta property="og:image" content="{{ site.url }}{{ page.image | relative_url }}">
+  <meta property="og:image" content="{{ site.url }}{{ page.sharepic | relative_url }}">
   {% endif %}
   {% endif %}
-  <meta property="og:site_name" content="SITCON">
-  <meta property="og:locale" content="zh_TW">
+  <meta property="og:site_name" content="0w0">
   <title>{{ page.title }}</title>
   <style>
     body {
