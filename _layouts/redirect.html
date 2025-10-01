@@ -79,6 +79,23 @@
       border: none;
       border-top: 1px solid #e5e7eb; /* 淡灰分隔线 */
     }
+    /* 背景容器 */
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .background img,
+    .background video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7; /* 半透明 */
+    }
   </style>
   {% if page.redirect_to and page.redirect_to != "" %}
     <meta http-equiv="refresh" content="5; url={{ page.redirect_to }}">
@@ -86,6 +103,19 @@
   {% endif %}
 </head>
 <body>
+  <!-- 背景区域 -->
+  {% if page.background %}
+    <div class="background">
+      {% assign ext = page.background | split:'.' | last | downcase %}
+      {% if ext == "mp4" or ext == "webm" or ext == "ogg" %}
+        <video autoplay muted loop playsinline>
+          <source src="{{ page.background }}" type="video/{{ ext }}">
+        </video>
+      {% else %}
+        <img src="{{ page.background }}" alt="background">
+      {% endif %}
+    </div>
+  {% endif %}
   <div class="container">
     {% if page.redirect_to and page.redirect_to != "" %}
       <h1>正在跳轉中…</h1><hr />
