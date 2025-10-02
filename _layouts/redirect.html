@@ -62,10 +62,14 @@
       width: 90%;
       transition: box-shadow 0.3s ease, transform 0.3s ease; /* 平滑过渡 */
 }
-
     .container:hover {
       box-shadow: 0 12px 24px rgba(0,0,0,0.15); /* 浮动阴影 */
       transform: translateY(-4px);               /* 微微上移 */
+}
+    @media (max-width: 768px) {
+    .container {
+      max-width: 95%; /* 或者 480px */
+    }
 }
     h1 {
       font-size: 1.5rem;
