@@ -36,7 +36,9 @@
     justify-content: center;
 
     /* 占满屏幕 */
-     min-height: 100vh;
+    min-height: 100vh;
+    overflow-x: hidden;   /* 禁止横向滚动 */
+    overflow-y: hidden;  /* 禁止多余的上下滚动 */
 
     /* 移动端适配字体大小 */
     /*font-size: 1rem; /* 基础字体 */
@@ -123,7 +125,7 @@
     }
     /* 背景容器 */
     .background {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
