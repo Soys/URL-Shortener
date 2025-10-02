@@ -35,11 +35,11 @@
     }
     .container {
       background: rgba(255, 255, 255, 0.9);
-      padding: 2rem 3rem;
+      padding: 2rem 2rem;
       border-radius: 1rem;
       box-shadow: 0 6px 18px rgba(0,0,0,0.1);
       text-align: center;
-      max-width: 480px;
+      max-width: 800px;
       width: 90%;
       transition: box-shadow 0.3s ease, transform 0.3s ease; /* 平滑过渡 */
 }
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function() {
       {% endunless %}
     {% endif %}
     <hr />
-    <p>This project is built on top of [<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a>]. We have made several modifications to adapt it to our needs. Many thanks to the original authors for their amazing work!</p>
+    
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -194,5 +194,6 @@ document.addEventListener("DOMContentLoaded", function() {
       }, delay * 1000);
     });
   </script>
+  <p style="bottom: 0;position: absolute;">This project is built on top of [<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a>]. We have made several modifications to adapt it to our needs. Many thanks to the original authors for their amazing work!</p>
 </body>
 </html>
