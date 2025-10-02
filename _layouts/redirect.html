@@ -164,11 +164,11 @@ document.addEventListener("DOMContentLoaded", function() {
       <h1>{{ page.title }}</h1><hr />
       <p>{{ page.description }}</p>
       {% unless page.path == "index.md" or page.url == "./"  %}
-        <a class="btn" href="{{ site.baseurl }}/">回首頁</a>
+        <a class="btn" href="{{ site.baseurl }}/">回首页</a>
       {% endunless %}
     {% endif %}
     <hr />
-    <p>鸣谢：<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a></p>
+    <p>This project is built on top of [<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a>]. We have made several modifications to adapt it to our needs. Many thanks to the original authors for their amazing work!</p>
   </div>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
