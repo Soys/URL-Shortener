@@ -139,7 +139,7 @@
     }
   footer {
     bottom: 0;
-    position: absolute;
+    position: fixed;
     font-size: 0.8rem;
     width: 100%;
     text-align: center;
@@ -173,10 +173,10 @@
   /* 桌面端隐藏按钮 */
   @media (min-width: 769px) {
     .footer-toggle {
-      display: none;
+      display: none !important;
     }
     .footer-content {
-      display: block;
+      display: block !important;
     }
   }
   </style>
