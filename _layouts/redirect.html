@@ -153,6 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
       {% endif %}
     </div>
   {% endif %}
+  <!--背景区域-->
   <div class="container">
     {% if page.redirect_to and page.redirect_to != "" %}
       <h1><span class="countdown-circle" id="countdown"></span>  正在跳转…</h1><hr />
@@ -167,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function() {
         <a class="btn" href="{{ site.baseurl }}/">回首页</a>
       {% endunless %}
     {% endif %}
-    <hr />
     
   </div>
   <script>
