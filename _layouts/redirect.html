@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -23,16 +24,34 @@
   <meta property="og:site_name" content="0w0">
   <title>{{ page.title }}</title>
   <style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: #f9fafb;
+    color: #333;
+
+    /* Flex 居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 占满屏幕 */
+     min-height: 100vh;
+
+    /* 移动端适配字体大小 */
+    font-size: 1rem; /* 基础字体 */
+    line-height: 1.5;
+  
+    /* 响应式字体（可选） */
+  }
+
+  @media (max-width: 600px) {
     body {
-      margin: 0;
-      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      background: #f9fafb;
-      color: #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-size: 1.2rem; /* 小屏幕字体放大一点 */
+      padding: 1rem;     /* 防止文字贴边 */
     }
+  }
+
     .container {
       background: rgba(255, 255, 255, 0.9);
       padding: 2rem 2rem;
