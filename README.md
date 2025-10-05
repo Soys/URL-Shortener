@@ -2,7 +2,7 @@
 
 ## 这是什么？
 
-使用 GitHub Pages 创建的一个简易短链接服务，基于原项目[SITCON 短網址服務](https://github.com/sitcon-tw/URL-Shortener)进行修改，在其本身支持的自定义标题、摘要和 Open Graph 标签的基础上，增加了对每个页面倒计时的单独时间设置和显示以及背景图片/视频自定义。由于与原本页面相差较大，所以顺带对移动端进行了适配。适合无服务器或者不想透过服务器进行短链接搭建的新手使用。
+使用 GitHub Pages 创建的一个简易短链接服务，基于原项目[SITCON 短網址服務](https://github.com/sitcon-tw/URL-Shortener)进行修改，在其本身支持的自定义标题、摘要和 Open Graph 标签的基础上，增加了对每个页面倒计时的单独时间设置和显示以及背景图片/视频的自定义。由于与原本页面相差较大，所以顺带对移动端进行了适配。适合无服务器或者不想透过服务器进行短链接搭建的新手使用。
 
 ## 如何使用
 
@@ -18,12 +18,12 @@
    description: "这是一篇演示文档"
    pic: "/images/your-image.jpg"
    # 或
-   pic: "https://example.com/images/withname.png"
-   background: "/images/0.png" #视频或图片
+   pic: "https://example.com/images/your-image.jpg"
+   background: "/images/0.png" #视频或图片，视频建议优先使用外链
    #或
    background: "https://example.com/images/0.png"
-   redirect_to: "https://x.com/"
-   redirect_time: 3
+   redirect_to: "https://example.com/"
+   redirect_time: 3 #跳转时间，不填默认为0.
    ---
 
    ```
@@ -31,10 +31,11 @@
    注意：
    - 如果图片存放在当前repo的 `images` 文件夹中，请使用绝对路径（例如：`/images/your-image.jpg`）。
    - 如果要使用外部图片，请使用完整的 URL。
-   - `title`、`description`和`pic`用于Open Graph 标签，但部分情况下能用于显示标题与内容。（例如404页面和首页）
+   - 背景视频建议使用外部链接。
+   - `title`、`description`和`pic`用于Open Graph 标签，但部分情况下`title`和`description`能用于显示标题与内容。（例如404页面和首页）
    - 如不需要请注释掉对应行，目前`pic`和`background`以及`redirect_time`不影响运行。(大概)【其中如`redirect_time`未填则默认为0】
   
-   一键复制：
+   一键复制模板：
 
    ```yaml
    ---
@@ -91,9 +92,9 @@
 
 3. GitHub Actions 设定文件位于 `.github/workflows/build.yml`，如需调整自动化流程，请修改此文件。
 
-4. ~~若要更新 Google Tag Manager 代码，请在 HTML 模板中找到对应的代码块进行修改。~~
+4. 若要更新 Google Tag Manager 代码，请在 HTML 模板中找到对应的代码块进行修改。
 
-5. 图片文件应放在 `images/` 文件夹中。请确保使用适当大小和格式的图片，以增强网站效能網站效能。
+5. 图片文件应放在 `images/` 文件夹中。请确保使用适当大小和格式的图片，以增强网站效能。
 
 6. 在引用图片时，请使用绝对路径（例如：`/images/your-image.jpg`）或完整的 URL。
 
