@@ -283,38 +283,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const params = new URLSearchParams(window.location.search);
-    const query = window.location.search.slice(1); // 取出 ? 后面的部分
-    const redirectElement = document.getElementById("redirecting");
-    const countdownElement = document.getElementById("countdown");
-    const messageElement = document.getElementById("message");
-
-    /* aa本次修改：增加 Steam 自动跳转逻辑 */
-    // 仅当路径包含 "steam" 且 ? 后为纯数字时执行
-    if (window.location.pathname.includes("steam") && /^\d+$/.test(query)) {
-      const targetUrl = `https://store.steampowered.com/app/${query}`;
-      redirectElement.textContent = "重定向至Steam商店...";
-      messageElement.textContent = `检测到App ID: ${query}`;
-      
-      let countdown = 3; // 倒计时秒数，可自定义
-      countdownElement.textContent = countdown;
-      const timer = setInterval(() => {
-        countdown--;
-        countdownElement.textContent = countdown;
-        if (countdown <= 0) {
-          clearInterval(timer);
-          window.location.href = targetUrl;
-        }
-      }, 1000);
-      return; // 终止后续通用逻辑
-    }
-    /* aa本次修改结束 */
-
-    // （这里保留你原本 redirect.html 模板的通用跳转逻辑）
-  });
-</script>
 
   <footer>
   <button class="footer-toggle" onclick="toggleFooter()">鸣谢</button>
@@ -322,5 +290,98 @@ document.addEventListener("DOMContentLoaded", function() {
     <p>This project is built on top of [<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a>]. We have made several modifications to adapt it to our needs. Many thanks to the original authors for their amazing work!</p>
   </div>
 </footer>
+  <script>
+/* aa本次修改：根据 page.redirect_template 和 ? 后的参数生成目标 URL（不直接跳转，交由原模板后续逻辑处理） */
+(function(){
+  // 由 Jekyll 注入 page.redirect_template，否则为 null
+  var tpl = {% if page.redirect_template %}{{ page.redirect_template | jsonify }}{% else %}null{% endif %}; /* aa本次修改 */
+
+  if(!tpl) return; /* 如果当前页面没有配置 redirect_template，则不做任何事 */ /* aa本次修改 */
+
+  // 解析查询：支持 ?250900 以及 ?id=250900 / ?app=250900 / ?keyword=foo / ?q=foo 等形式
+  function parseQuery() {
+    var raw = window.location.search || '';
+    if(raw.startsWith('?')) raw = raw.slice(1);
+    var id = null, keyword = null;
+
+    if(!raw) return {id:null, keyword:null};
+
+    // 如果是键值对形式
+    if(raw.indexOf('=') !== -1) {
+      try {
+        var params = new URLSearchParams(raw);
+        // id 候选项
+        var idKeys = ['id','app','a'];
+        for(var i=0;i<idKeys.length;i++){
+          var v = params.get(idKeys[i]);
+          if(v && /^\d+$/.test(v)) { id = v; break; }
+        }
+        // keyword 候选项
+        var kwKeys = ['keyword','q','term','k','s'];
+        for(var j=0;j<kwKeys.length;j++){
+          var w = params.get(kwKeys[j]);
+          if(w && w.length>0) { keyword = w; break; }
+        }
+      } catch(e) {
+        // parsing failed -> fallthrough
+      }
+    } else {
+      // 简短形式 ?250900 或 ?isaac
+      if(/^\d+$/.test(raw)) id = raw;
+      else if(raw.length>0) keyword = raw;
+    }
+    return {id:id, keyword:keyword};
+  }
+
+  var parsed = parseQuery(); /* aa本次修改 */
+  var id = parsed.id;
+  var keyword = parsed.keyword;
+
+  // 决定如何填充模板
+  var missing = null;
+  var target = null;
+
+  var needsId = tpl.indexOf('{id}') !== -1;
+  var needsKeyword = tpl.indexOf('{keyword}') !== -1;
+
+  if(needsId && !id) missing = missing || 'id';
+  if(needsKeyword && !keyword) missing = missing || 'keyword';
+
+  if(missing) {
+    // 如果缺少必要字段，则在页面上尽量显示错误（若页面有 error/message 元素）
+    var err = document.getElementById('error') || document.getElementById('message') || null;
+    if(err) { err.style.display = 'block'; err.textContent = 'Missing required parameter: ' + missing + '.'; }
+    console.warn('redirect: missing parameter ->', missing);
+    return;
+  }
+
+  // 填充模板（允许同时有 {id} 和 {keyword}）
+  target = tpl;
+  if(needsId && id) target = target.split('{id}').join(encodeURIComponent(id));
+  if(needsKeyword && keyword) target = target.split('{keyword}').join(encodeURIComponent(keyword));
+
+  // 如果模板不包含任何占位符，直接使用 tpl（原样）
+  if(!needsId && !needsKeyword) {
+    target = tpl;
+  }
+
+  // 暴露目标 URL 给页面和原模板逻辑使用（但不在这里直接跳转）
+  window.REDIRECT_TARGET = target; /* aa本次修改 */
+
+  // 如果页面中存在 id="targetLink"（原模板常用），就设置它，供原模板显示/倒计时使用
+  var linkEl = document.getElementById('targetLink');
+  if(linkEl){
+    linkEl.href = target;
+    linkEl.textContent = target;
+    linkEl.style.display = 'inline-block';
+  }
+
+  // 触发自定义事件，方便原模板或其他脚本监听并接手倒计时/跳转
+  window.dispatchEvent(new CustomEvent('redirect-target-ready', { detail: { target: target } })); /* aa本次修改 */
+
+  // （不在此处执行 location.replace，保留原模板的倒计时/跳转行为）
+})();
+</script>
+
 </body>
 </html>
