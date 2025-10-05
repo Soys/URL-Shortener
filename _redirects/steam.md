@@ -1,5 +1,5 @@
 ---
-layout: redirect
+layout: steam
 title: "Steam"
 description: "Steams是全球最大的游戏销售平台"
 pic: "https://example.com/images/withname.png"
