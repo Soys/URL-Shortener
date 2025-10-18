@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5LZ94HN7');</script>
+  <!-- End Google Tag Manager -->
+  <meta name="description" content="<embed src='https://ak-webview.hypergryph.com/gameBulletin' width='750' height='430' />">
+  <meta name="author" content="Soys(原作者：SITCON)">
+  <meta property="og:title" content="明日方舟公告">
+  <meta property="og:description" content="<embed src='https://ak-webview.hypergryph.com/gameBulletin' width='750' height='430' />">
+  
+  <meta property="og:site_name" content="0w0">
+  <title>明日方舟公告</title>
+  <style>
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: #f9fafb;
+    color: #333;
+
+    /* Flex 居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 占满屏幕 */
+    min-height: 100vh;
+    overflow-x: hidden;   /* 禁止横向滚动 */
+    overflow-y: hidden;  /* 禁止多余的上下滚动 */
+
+    /* 移动端适配字体大小 */
+    /*font-size: 1rem; /* 基础字体 */
+    /*line-height: 1.5;*/
+  
+    /* 响应式字体（可选） */
+  }
+
+  @media (max-width: 600px) {
+    body {
+      font-size: 1rem; /* 小屏幕字体放大一点 */
+      padding: 1rem;     /* 防止文字贴边 */
+    }
+  }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 750px;
+      width: 90%;
+      transition: box-shadow 0.3s ease, transform 0.3s ease; /* 平滑过渡 */
+}
+    .container:hover {
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15); /* 浮动阴影 */
+      transform: translateY(-4px);               /* 微微上移 */
+}
+    @media (max-width: 768px) {
+    .container {
+      max-width: 95%;
+      padding: 1.2rem; /* 缩小内边距 */
+    }
+}
+
+    @media (max-width: 480px) {
+    .container {
+      max-width: 90%;
+      padding: 1rem; /* 更小的手机再缩一点 */
+    }
+    body {
+      font-size: 15px; /* 字体缩小，避免大块感 */
+      line-height: 1.5;
+    }
+}
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+    p {
+      margin: 0.5rem 0 1rem;
+      color: #4b5563;
+    }
+    a {
+      display: inline-block;
+      background-color: #e0e0e0; /* 类似 code 的浅灰背景 */
+      color: #111827;             /* 深色文本 */
+      padding: 0.2rem 0.5rem;     /* 内边距 */
+      border-radius: 0.25rem;     /* 圆角 */
+      font-family: "Fira Code", "Courier New", monospace; /* 等宽字体 */
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 0.5rem;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .btn:hover {
+      background: #1d4ed8;
+    }
+    hr {
+      margin: 2rem 0;         /* 上下间隔 */
+      border: none;
+      border-top: 1px solid #e5e7eb; /* 淡灰分隔线 */
+    }
+    /* 背景容器 */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+      filter: blur(8px);  /*背景模糊 --> */
+      /*transform: scale(1.05);  防止模糊时边缘出现空隙 --> */
+    }
+    .background img,
+    .background video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7; /* 半透明 */
+    }
+    .countdown-circle {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background-color: rgba(0,123,255,0.2);
+      color: #007bff;
+      font-weight: bold;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+  footer {
+    bottom: 0;
+    position: fixed;
+    font-size: 0.8rem;
+    width: 100%;
+    text-align: center;
+    /*padding: 0.5rem;*/
+    box-sizing: border-box;
+  }
+
+  /* footer 内容容器 */
+  .footer-content {
+    display: block; /* 桌面端默认显示 */
+    margin-top: 0.3rem;
+  }
+
+  /* 移动端折叠 */
+  @media (max-width: 768px) {
+    footer {
+      background: #f0f0f0;
+    }
+    .footer-content {
+      display: none; /* 默认隐藏内容 */
+    }
+    .footer-toggle {
+      display: inline-block; /* 显示折叠按钮 */
+      background: none;
+      border: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+  }
+
+  /* 桌面端隐藏按钮 */
+  @media (min-width: 769px) {
+    .footer-toggle {
+      display: none !important;
+    }
+    .footer-content {
+      display: block !important;
+    }
+  }
+  </style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var target = "";
+  var delay = 0 * 1000;
+  console.log("Redirect delay (ms):", delay);
+  if(target && target.length > 0){
+    setTimeout(function(){
+      window.location.replace(target);
+    }, delay);
+  }
+});
+</script>
+
+
+<link rel="canonical" href="">
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5LZ94HN7"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <!-- 背景区域 -->
+  
+    <div class="background">
+      
+      
+        <img src="/images/0.png" alt="background">
+      
+    </div>
+  
+  <!--背景区域-->
+  <div class="container">
+    
+      <h1>明日方舟公告</h1><hr />
+      <p><embed src='https://ak-webview.hypergryph.com/gameBulletin' width='750' height='430' /></p>
+      
+        <a class="btn" href="/">回首页</a>
+      
+    
+    
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var target = "";
+      var delay = 0; // 秒数
+      var countdownElem = document.getElementById("countdown");
+      var remaining = delay;
+
+      countdownElem.textContent = remaining;
+
+      var interval = setInterval(function() {
+        remaining--;
+        countdownElem.textContent = remaining;
+        if (remaining <= 0) {
+          clearInterval(interval);
+        }
+      }, 1000);
+
+      setTimeout(function() {
+        if (target && target.length > 0) {
+          window.location.replace(target);
+        }
+      }, delay * 1000);
+    });
+  </script>
+  <script>
+  function toggleFooter() {
+    const content = document.querySelector('.footer-content');
+    if(content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  }
+</script>
+  <footer>
+  <button class="footer-toggle" onclick="toggleFooter()">鸣谢</button>
+  <div class="footer-content">
+    <p>This project is built on top of [<a href="https://github.com/sitcon-tw/URL-Shortener">SITCON 短網址服務</a>]. We have made several modifications to adapt it to our needs. Many thanks to the original authors for their amazing work!</p>
+  </div>
+</footer>
+</body>
+</html>
